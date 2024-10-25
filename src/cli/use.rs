@@ -139,11 +139,11 @@ impl Use {
 
     fn get_config_file(&self) -> Result<Box<dyn ConfigFile>> {
         let path = if let Some(env) = &*env::MISE_ENV {
-            config_file_from_dir(&env::current_dir()?.join(format!(".mise.{}.toml", env)))
+            config_file_from_dir(&env::current_dir()?.join(format!("mise.{}.toml", env)))
         } else if self.global {
             MISE_GLOBAL_CONFIG_FILE.clone()
         } else if let Some(env) = &self.env {
-            config_file_from_dir(&env::current_dir()?.join(format!(".mise.{}.toml", env)))
+            config_file_from_dir(&env::current_dir()?.join(format!("mise.{}.toml", env)))
         } else if let Some(p) = &self.path {
             config_file_from_dir(p)
         } else {
